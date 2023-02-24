@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
+import 'package:ways_todo/login.dart';
+import 'package:ways_todo/register.dart';
 
 class homepage extends StatelessWidget {
   const homepage({super.key});
@@ -20,7 +22,7 @@ class homepage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(),
-                Spacer(),
+                const Spacer(),
                 Image.asset("assets/image/iconhome.png"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -49,29 +51,33 @@ class homepage extends StatelessWidget {
                 ),
                 Container(
                   width: 300,
-                  margin: EdgeInsets.only(top: 24),
+                  margin: const EdgeInsets.only(top: 24),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       const Center(
                         child: Text(
-                            "Write your activity and finish your activity. Fast, Simple and Easy to Use"),
+                            "Write your activity and finish your activity. Fast, Simple and Easy to Use",
+                            textAlign: TextAlign.center),
                       ),
                     ],
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Container(
-                  margin: EdgeInsets.only(bottom: 20),
+                  margin: const EdgeInsets.only(bottom: 20),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       SizedBox(
                         width: 310,
                         child: ElevatedButton(
-                            onPressed: () => true,
-                            child: Text(
+                            onPressed: () =>
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Login(),
+                                )),
+                            child: const Text(
                               "Login",
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.bold),
@@ -84,15 +90,17 @@ class homepage extends StatelessWidget {
                       Container(
                         width: 310,
                         child: ElevatedButton(
-                          onPressed: () => true,
-                          child: Text(
+                          onPressed: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => Register())),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll<Color>(
+                                  Colors.grey[500]!)),
+                          child: const Text(
                             "Register",
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold),
                           ),
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll<Color>(
-                                  Colors.grey[500]!)),
                         ),
                       )
                     ],
