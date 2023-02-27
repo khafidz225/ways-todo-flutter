@@ -26,7 +26,7 @@ class _ListTodoState extends State<ListTodo> {
           backgroundColor: Color(0xffff5555),
           // leading: Icon(Icons.menu),
           pinned: true,
-          expandedHeight: 100,
+          expandedHeight: 65,
           flexibleSpace: FlexibleSpaceBar(
             centerTitle: true,
             background: Container(

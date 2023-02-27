@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ways_todo/screen/ListTodo.dart';
+import 'package:ways_todo/screen/add_category.dart';
 
 class NavigatorBar extends StatelessWidget {
   const NavigatorBar({super.key});
@@ -33,10 +34,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       'Index 1: Business',
       style: optionStyle,
     ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+    AddCategory()
   ];
 
   void _onItemTapped(int index) {
