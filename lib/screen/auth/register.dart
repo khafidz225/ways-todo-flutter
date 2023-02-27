@@ -1,8 +1,9 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:ways_todo/login.dart';
+import 'package:ways_todo/screen/auth/login.dart';
+
+import '../../Components/form_email.dart';
+import '../../Components/form_password.dart';
 
 class Register extends StatefulWidget {
   Register({super.key});
@@ -27,6 +28,7 @@ class _RegisterState extends State<Register> {
       debugShowCheckedModeBanner: false,
       home: WillPopScope(
         onWillPop: () async {
+          Navigator.pushNamed(context, '/');
           return shouldPop;
         },
         child: Scaffold(
@@ -41,8 +43,9 @@ class _RegisterState extends State<Register> {
                 Container(
                   margin: EdgeInsets.only(top: 30, bottom: 20),
                   child: Row(
+                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      Text(
+                      const Text(
                         "Register",
                         style: TextStyle(
                             fontSize: 24, fontWeight: FontWeight.bold),
@@ -55,59 +58,15 @@ class _RegisterState extends State<Register> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        TextFormField(
-                          controller: email,
-                          keyboardType: TextInputType.emailAddress,
-                          validator: (value) {
-                            if (value == "") {
-                              return "Email tidak boleh kosong";
-                            }
-                            if (value != null &&
-                                EmailValidator.validate(value)) {
-                              return "Harus ber";
-                            }
-                          },
-                          decoration: const InputDecoration(
-                              labelText: "Email",
-                              prefixIcon: Icon(Icons.mail),
-                              border: OutlineInputBorder()),
-                        ),
-                        SizedBox(
+                        FormEmail(email: email),
+                        const SizedBox(
                           height: 20,
                         ),
-                        TextFormField(
-                          controller: name,
-                          validator: (value) {
-                            if (value == "") {
-                              return "Name tidak boleh kosong";
-                            }
-                          },
-                          decoration: const InputDecoration(
-                              labelText: "Name",
-                              prefixIcon: Icon(Icons.account_circle),
-                              border: OutlineInputBorder()),
-                        ),
-                        SizedBox(
+                        form_name(name: name),
+                        const SizedBox(
                           height: 20,
                         ),
-                        TextFormField(
-                          controller: password,
-                          obscureText: true,
-                          validator: (value) {
-                            if (value == "") {
-                              return "Password tidak boleh kosong";
-                            }
-                            if (value != null && value.length < 7) {
-                              return 'Minimal 7 karakter password';
-                            } else {
-                              return null;
-                            }
-                          },
-                          decoration: const InputDecoration(
-                              labelText: "Password",
-                              prefixIcon: Icon(Icons.lock),
-                              border: OutlineInputBorder()),
-                        ),
+                        Form_password(password: password),
                         Container(
                           margin: EdgeInsets.only(top: 50),
                           // decoration: ,
@@ -123,6 +82,7 @@ class _RegisterState extends State<Register> {
                                         userName = name.text;
                                         userPassword = password.text;
                                       });
+                                      Navigator.pushNamed(context, '/login');
                                       print(userEmail);
                                       print(userName);
                                       print(userPassword);
@@ -131,7 +91,7 @@ class _RegisterState extends State<Register> {
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: Color(0xffFF5555)),
                                   child: const Text(
-                                    "Login",
+                                    "Register",
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold),
@@ -143,12 +103,10 @@ class _RegisterState extends State<Register> {
                                 children: [
                                   const Text("Joined us before ?"),
                                   TextButton(
-                                      onPressed: () => Navigator.of(context)
-                                              .push(MaterialPageRoute(
-                                            builder: (context) => Login(),
-                                          )),
+                                      onPressed: () => Navigator.pushNamed(
+                                          context, '/login'),
                                       child: const Text(
-                                        "Register",
+                                        "Login",
                                         style: TextStyle(
                                             color: Color(0xffFF5555),
                                             fontWeight: FontWeight.bold),
@@ -165,6 +123,31 @@ class _RegisterState extends State<Register> {
           )),
         ),
       ),
+    );
+  }
+}
+
+class form_name extends StatelessWidget {
+  const form_name({
+    Key? key,
+    required this.name,
+  }) : super(key: key);
+
+  final TextEditingController name;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: name,
+      validator: (value) {
+        if (value == "") {
+          return "Name tidak boleh kosong";
+        }
+      },
+      decoration: const InputDecoration(
+          labelText: "Name",
+          prefixIcon: Icon(Icons.account_circle),
+          border: OutlineInputBorder()),
     );
   }
 }

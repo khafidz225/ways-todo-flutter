@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:ways_todo/register.dart';
+import 'package:ways_todo/Components/form_email.dart';
+import 'package:ways_todo/Components/form_password.dart';
+import 'package:ways_todo/screen/auth/register.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -36,7 +38,7 @@ class _LoginState extends State<Login> {
               Container(
                 margin: EdgeInsets.only(top: 30, bottom: 20),
                 child: Row(
-                  children: [
+                  children: const [
                     Text(
                       "Login",
                       style:
@@ -50,41 +52,11 @@ class _LoginState extends State<Login> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      TextFormField(
-                        controller: email,
-                        keyboardType: TextInputType.emailAddress,
-                        validator: (value) {
-                          if (value == "") {
-                            return "Email tidak boleh kosong";
-                          }
-                          // if (value != null && ) {}
-                        },
-                        decoration: const InputDecoration(
-                            labelText: "Email",
-                            prefixIcon: Icon(Icons.mail),
-                            border: OutlineInputBorder()),
-                      ),
+                      FormEmail(email: email),
                       SizedBox(
                         height: 20,
                       ),
-                      TextFormField(
-                        controller: password,
-                        obscureText: true,
-                        validator: (value) {
-                          if (value == "") {
-                            return "Password tidak boleh kosong";
-                          }
-                          if (value != null && value.length < 7) {
-                            return 'Minimal 7 karakter password';
-                          } else {
-                            return null;
-                          }
-                        },
-                        decoration: const InputDecoration(
-                            labelText: "Password",
-                            prefixIcon: Icon(Icons.lock),
-                            border: OutlineInputBorder()),
-                      ),
+                      Form_password(password: password),
                       Container(
                         margin: EdgeInsets.only(top: 100),
                         // decoration: ,
@@ -99,6 +71,9 @@ class _LoginState extends State<Login> {
                                       userEmail = email.text;
                                       userPassword = password.text;
                                     });
+                                    Navigator.pushNamed(
+                                        context, '/navigatorbar');
+
                                     print(userEmail);
                                     print(userPassword);
                                   }
@@ -118,10 +93,8 @@ class _LoginState extends State<Login> {
                               children: [
                                 const Text("New Users ?"),
                                 TextButton(
-                                    onPressed: () => Navigator.of(context)
-                                            .push(MaterialPageRoute(
-                                          builder: (context) => Register(),
-                                        )),
+                                    onPressed: () => Navigator.pushNamed(
+                                        context, '/register'),
                                     child: const Text(
                                       "Register",
                                       style: TextStyle(
