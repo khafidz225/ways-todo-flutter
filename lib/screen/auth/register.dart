@@ -38,10 +38,10 @@ class _RegisterState extends State<Register> {
               width: 320,
               child: Column(children: [
                 Container(
-                    margin: EdgeInsets.only(top: 40),
+                    margin: const EdgeInsets.only(top: 40),
                     child: Image.asset("assets/image/iconlogin.png")),
                 Container(
-                  margin: EdgeInsets.only(top: 30, bottom: 20),
+                  margin: const EdgeInsets.only(top: 30, bottom: 20),
                   child: Row(
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
@@ -68,7 +68,7 @@ class _RegisterState extends State<Register> {
                         ),
                         Form_password(password: password),
                         Container(
-                          margin: EdgeInsets.only(top: 50),
+                          margin: const EdgeInsets.only(top: 50),
                           // decoration: ,
                           child: Column(
                             children: [
@@ -127,6 +127,7 @@ class _RegisterState extends State<Register> {
   }
 }
 
+// ignore: camel_case_types
 class form_name extends StatelessWidget {
   const form_name({
     Key? key,

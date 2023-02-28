@@ -19,27 +19,38 @@ class _DropdownState extends State<Dropdown> {
   ];
 
   String? selectedValue;
+
+  print(selectedValue) {
+    // TODO: implement print
+    throw UnimplementedError();
+  }
+
   @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
-      child: DropdownButton2(
-        hint: Text("Categ"),
-        items: items
-            .map((item) => DropdownMenuItem<String>(
-                  value: item,
-                  child: Text(
-                    item,
-                    style: const TextStyle(
-                      fontSize: 14,
+      child: DropdownButtonFormField(
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            labelText: "Category",
+          ),
+          items: items
+              .map((item) => DropdownMenuItem<String>(
+                    value: item,
+                    child: Text(
+                      item,
+                      style: const TextStyle(
+                        fontSize: 14,
+                      ),
                     ),
-                  ),
-                ))
-            .toList(),
-        value: selectedValue,
-        onChanged: (value) => setState(() {
-          selectedValue = value as String;
-        }),
-      ),
+                  ))
+              .toList(),
+          value: selectedValue,
+          onChanged: (value) {
+            setState(() {
+              selectedValue = value as String;
+            });
+            // print(selectedValue);
+          }),
     );
   }
 }
