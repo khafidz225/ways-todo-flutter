@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Homepage extends StatelessWidget {
-  const Homepage({super.key});
+  final String testing;
+
+  //Salah satu menggunakan Props di flutter
+  const Homepage({Key? key, required this.testing}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +21,8 @@ class Homepage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               // ignore: prefer_const_literals_to_create_immutables
               children: [
-                const Text(
-                  "Ways ",
+                Text(
+                  testing,
                   style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                 ),
                 const Text(
